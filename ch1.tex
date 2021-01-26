@@ -1,0 +1,55 @@
+\documentclass[a4paper]{report}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage[sc]{mathpazo}
+\linespread{1.05}         % Palladio needs more leading (space between lines)
+\usepackage[T1]{fontenc}
+\usepackage[margin=1.5in, marginparwidth=2in]{geometry}
+\newenvironment{ex}[1]
+    {\noindent{\large \bf Exercise #1.}}{\vspace{0.5cm}}
+
+\begin{document}
+\begin{ex}{1.2.i}
+  We proceed by induction on $n-k$. For the base case ($n-k = 1$), there
+  exists a bijective map $s : \mathbb{R}^{n-1} \rightarrow W$
+  \[
+     (c_1, \dots, c_{n-1}) \mapsto c_1e_1 + \dots + c_{n-1}e_{n-1}
+  \]
+
+  Now, let $e_n \in V \setminus W$ and consider the map $t : W \rightarrow V$ 
+  \[
+     (c_1, \dots, c_{n}) \mapsto c_1e_1 + \dots + c_{n-1}e_{n-1} + c_{n}e_{n}
+  \]
+  Suppose $\sum_{i=1}^{n} c_ie_i = 0$ and $c_{n} \neq 0$. Then
+  $\sum_{i=1}^{n-1} c_ie_i = - c_{n}e_{n}$ since $e_{n} \neq 0$
+  because $0 \in W$. But this is impossible, because no linear
+  combination of vectors in $W$ can equal $e_{n}$. Hence, $c_{n} = 0$
+  and $\sum_{i=1}^{n-1} c_ie_i = 0$ (since $s$ is  injective), so we conclude that $t$ is injective.
+
+  There exists a linear map $r : V \rightarrow W$ which is the identity if $v \in W$ and
+  otherwise is 0. But this means that $\ker r = V \setminus W \cup \{0\}$ and hence $\dim V \setminus W = 1$.
+  So, any vector in $V \setminus W$ is a basis of $V \setminus W$ (since $V \setminus W$ must
+  have some basis consisting of a single vector and any vector is then just a linear scaling of that vector, i.e.
+  any linear scaling of the basis vector is itself a basis vector.)
+
+  Now, let $v \in V$. If $v \in W$, then clearly there exists $(c_1, \dots, c_{n})$ such that
+  $t(c_1, \dots, c_{n}) = v$ (since since $s$ spans $W$; $c_{n} = 0$ in this case). So, let $v \in V \setminus W$.
+  Then, there exists $c_n$ such that $v = c_ne_n$, i.e., 
+  \[
+     v = t(0, \dots 0, c_{n})
+     \]
+     and we conclude that $t$ spans $V$ and hence is a bijection.
+
+     For the inductive step, suppose the proposition is true for $n -k
+     \leq K$ and suppose $n -k = K + 1$. Choose any $e_{k+1} \in V
+     \setminus W$ and consider the subspace $S = \{w + \lambda e_{k+1}
+     \mid w \in W, \lambda \in \mathbb{R} \}$. By similar arguments to above, $\dim S = k + 1$
+     and $e_1, \dots, e_k, e_{k+1}$ forms a basis of $S$.
+     So, we can invoke the inductive hypothesis and we're done.
+\end{ex}
+
+\end{document}
